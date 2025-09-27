@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Hero from "@/components/Hero";
 import InteractiveMap from "@/components/InteractiveMap";
 import Gallery from "@/components/Gallery";
@@ -7,6 +8,8 @@ import Features from "@/pages/Features";
 import Waterfalls from "@/pages/Waterfalls";
 
 const Index = () => {
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+
   return (
     <main className="relative">
       <BackgroundElements />
@@ -35,11 +38,7 @@ const Index = () => {
 {/* Chatbot Button */}
 <div className="fixed bottom-6 right-6 z-50">
   <button 
-    onClick={() => {
-      const modal = document.getElementById('chatbot-modal');
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    }}
+    onClick={() => setIsChatbotOpen(true)}
     className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
   >
     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -49,54 +48,51 @@ const Index = () => {
   </button>
 </div>
 
-{/* Chatbot Modal */}
-<div id="chatbot-modal" className="hidden fixed inset-0 z-50">
-  <div className="flex items-center justify-center min-h-screen p-4">
-    {/* Background overlay */}
-    <div 
-      className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-      onClick={() => {
-        const modal = document.getElementById('chatbot-modal');
-        modal.classList.add('hidden');
-        document.body.style.overflow = 'auto'; // Restore scrolling
-      }}
-    ></div>
+{/* Chatbot Popup */}
+<div 
+  className={`fixed right-6 z-50 transition-all duration-300 ${
+    isChatbotOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+  }`}
+  style={{ 
+    width: 'clamp(300px, 90vw, 400px)',
+    height: 'clamp(400px, 80vh, 600px)',
+    bottom: 'calc(80px + 1.5rem)' // Position above the button with margin
+  }}
+>
+  <div className="h-full flex flex-col bg-white shadow-xl rounded-lg border border-gray-200">
+    {/* Header */}
+    <div className="flex-shrink-0 flex justify-between items-center px-6 py-4 border-b bg-gray-50 rounded-t-lg">
+      <h3 className="text-lg font-medium text-gray-900">Travel Assistant</h3>
+      <button 
+        onClick={() => setIsChatbotOpen(false)}
+        className="text-gray-400 hover:text-gray-600 transition-colors p-2 rounded-full hover:bg-gray-200"
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
     
-    {/* Modal panel */}
-    <div className="relative bg-white rounded-lg shadow-xl w-full max-w-4xl" style={{height: '80vh'}}>
-      <div className="h-full flex flex-col">
-        {/* Header with close button */}
-        <div className="flex justify-between items-center px-6 py-4 border-b bg-gray-50">
-          <h3 className="text-lg font-medium text-gray-900">Travel Assistant</h3>
-          <button 
-            onClick={() => {
-              const modal = document.getElementById('chatbot-modal');
-              modal.classList.add('hidden');
-              document.body.style.overflow = 'auto'; // Restore scrolling
-            }}
-            className="text-gray-400 hover:text-gray-600 transition-colors p-2 rounded-full hover:bg-gray-200"
-            aria-label="Close chatbot"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-        
-        {/* Chatbot iframe */}
-        <div className="flex-1 w-full h-full">
-          <iframe 
-            src="https://sih-demo-delta.vercel.app/" 
-            className="w-full h-full border-0"
-            title="Travel Assistant Chatbot"
-            loading="lazy"
-            allow="microphone"
-          />
-        </div>
-      </div>
+    {/* Chatbot iframe */}
+    <div className="flex-1 rounded-b-lg overflow-hidden">
+      <iframe 
+        src="https://vanancha.netlify.app/" 
+        className="w-full h-full border-0"
+        title="Travel Assistant Chatbot"
+        loading="lazy"
+        allow="microphone"
+      />
     </div>
   </div>
 </div>
+
+{/* Overlay */}
+{isChatbotOpen && (
+  <div 
+    className="fixed inset-0 bg-black bg-opacity-50 z-40"
+    onClick={() => setIsChatbotOpen(false)}
+  />
+)}
 
 {/* Features Section */}
 <Features />
