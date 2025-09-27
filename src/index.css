@@ -1,0 +1,277 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Jharkhand Tourism Design System - Inspired by nature's beauty
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Base colors inspired by Jharkhand's natural landscapes */
+    --background: 210 20% 98%;
+    --foreground: 210 100% 7%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 100% 7%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 100% 7%;
+
+    /* Primary - Forest Green inspired by Jharkhand's lush forests */
+    --primary: 152 60% 25%;
+    --primary-foreground: 0 0% 98%;
+    --primary-hover: 152 60% 30%;
+
+    /* Secondary - Waterfall Blue inspired by cascading waterfalls */
+    --secondary: 200 70% 45%;
+    --secondary-foreground: 0 0% 98%;
+    --secondary-hover: 200 70% 50%;
+
+    /* Accent - Earth tone inspired by Jharkhand's landscapes */
+    --accent: 35 45% 65%;
+    --accent-foreground: 210 100% 7%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 152 60% 25%;
+
+    --radius: 0.75rem;
+
+    /* Custom gradients for dynamic backgrounds */
+    --gradient-nature: linear-gradient(135deg, hsl(152 60% 25%), hsl(200 70% 45%));
+    --gradient-waterfall: linear-gradient(180deg, hsl(200 70% 45%), hsl(200 80% 60%));
+    --gradient-forest: linear-gradient(45deg, hsl(152 60% 25%), hsl(152 70% 35%));
+    --gradient-overlay: linear-gradient(45deg, hsl(152 60% 25% / 0.9), hsl(200 70% 45% / 0.8));
+
+    /* Shadows with nature theme */
+    --shadow-nature: 0 10px 30px -10px hsl(152 60% 25% / 0.3);
+    --shadow-waterfall: 0 8px 25px -8px hsl(200 70% 45% / 0.4);
+    --shadow-glow: 0 0 40px hsl(200 70% 60% / 0.3);
+
+    /* Animation properties */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark mode with deep forest and night sky inspiration */
+    --background: 210 50% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 210 50% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 210 50% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 152 60% 40%;
+    --primary-foreground: 210 50% 8%;
+    --primary-hover: 152 60% 45%;
+
+    --secondary: 200 70% 55%;
+    --secondary-foreground: 210 50% 8%;
+    --secondary-hover: 200 70% 60%;
+
+    --accent: 35 45% 70%;
+    --accent-foreground: 210 50% 8%;
+
+    --muted: 210 40% 15%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 40% 20%;
+    --input: 210 40% 15%;
+    --ring: 152 60% 40%;
+
+    /* Dark mode gradients */
+    --gradient-nature: linear-gradient(135deg, hsl(210 50% 8%), hsl(152 60% 25%));
+    --gradient-waterfall: linear-gradient(180deg, hsl(200 70% 25%), hsl(200 80% 35%));
+    --gradient-forest: linear-gradient(45deg, hsl(152 60% 15%), hsl(152 70% 25%));
+    --gradient-overlay: linear-gradient(45deg, hsl(152 60% 15% / 0.95), hsl(200 70% 25% / 0.9));
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  /* Nature-inspired backgrounds */
+  .bg-gradient-nature {
+    background: var(--gradient-nature);
+  }
+  
+  .bg-gradient-waterfall {
+    background: var(--gradient-waterfall);
+  }
+  
+  .bg-gradient-forest {
+    background: var(--gradient-forest);
+  }
+  
+  .bg-gradient-overlay {
+    background: var(--gradient-overlay);
+  }
+
+  /* Custom shadows */
+  .shadow-nature {
+    box-shadow: var(--shadow-nature);
+  }
+  
+  .shadow-waterfall {
+    box-shadow: var(--shadow-waterfall);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+
+  /* Interactive elements */
+  .hover-lift {
+    @apply transition-smooth hover:scale-105 hover:-translate-y-1;
+  }
+  
+  .hover-glow {
+    @apply transition-smooth hover:shadow-glow;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+  
+  .hover-rotate {
+    @apply transition-transform duration-300 hover:rotate-6;
+  }
+  
+  .hover-pulse {
+    @apply transition-all duration-300;
+  }
+  
+  .interactive-card {
+    @apply relative overflow-hidden rounded-lg shadow-nature hover:shadow-waterfall transition-all duration-300 hover:-translate-y-2;
+  }
+
+  /* Animation keyframes */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px hsl(var(--primary) / 0.5); }
+    50% { box-shadow: 0 0 40px hsl(var(--primary) / 0.8); }
+  }
+  
+  @keyframes bounce-soft {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+  }
+  
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+  
+  @keyframes rotate-slow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @keyframes scale-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  /* Animation utilities */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  
+  .animate-bounce-soft {
+    animation: bounce-soft 2s ease-in-out infinite;
+  }
+  
+  .animate-wiggle {
+    animation: wiggle 1s ease-in-out infinite;
+  }
+  
+  .animate-rotate-slow {
+    animation: rotate-slow 20s linear infinite;
+  }
+  
+  .animate-scale-pulse {
+    animation: scale-pulse 2s ease-in-out infinite;
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Map overlay styles */
+  .map-overlay {
+    background: linear-gradient(45deg, 
+      hsl(152 60% 25% / 0.7), 
+      hsl(200 70% 45% / 0.6)
+    );
+    backdrop-filter: blur(2px);
+  }
+}
